@@ -60,7 +60,7 @@ function surroundSquares(current, arrayMaze) {
   var bottom = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord + 1)[0]
   var top = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord - 1)[0]
   
-  if (left != null &&left.element != '#') {
+  if (left != null && left.element != '#') {
     if (left.value == null) {
       left.value = current.value + 1
       surroundSquares(left, arrayMaze)
@@ -93,7 +93,7 @@ function surroundSquares(current, arrayMaze) {
       return
     }
   }
-  if (bottom != null &&bottom.element != '#') {
+  if (bottom != null && bottom.element != '#') {
     if (bottom.value == null) {
       bottom.value = current.value + 1
       surroundSquares(bottom, arrayMaze)
