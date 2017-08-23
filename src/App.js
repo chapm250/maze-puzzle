@@ -224,7 +224,12 @@ const solutionStyle = {
 }
 const container = {
   fontSize: "0",
+  whiteSpace: "nowrap",
+  overflowX: "scroll",
+  overflowY: "scroll",
 }
+
+{/* <img src="grass.jpg" style="width:20px;height:20px;"/> */}
 
 function findStyle(blockChar) {
   if (isWall(blockChar)) {
