@@ -1,4 +1,4 @@
-Live version running on a RPI3 24.118.124.23:3000
+Live version running on a RPI3 at 24.118.124.23:3000
 
 # maze-puzzle
 To setup
