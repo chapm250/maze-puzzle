@@ -34,10 +34,11 @@ router.post('/', function (req, res, next) {
   var readyArray = doThings(arrayMaze)
   var newStringArray = backToString(readyArray)
 
-  maze.steps = steps
+  
   return res.json({
     body: ({
       maze: newStringArray,
+      steps: steps,
     })
   });
 });

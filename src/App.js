@@ -87,8 +87,8 @@ var mediumMaze =
 #.##########.#.#.#########################################.##
 #............#.#.##........................................##
 ##############.#.####.########################.#####.########
-#.......................A......................#####........#
-#############################################################
+#..............................................#####........#
+########################A####################################
 `
 
 var smallMaze =
@@ -119,6 +119,7 @@ class App extends Component {
     this.state = {
       maze: smallMaze,
     };
+    this.steps = 0
     this.onMazeChange = this.onMazeChange.bind(this);
     this.onMazeSubmit = this.onMazeSubmit.bind(this);
     this.onMazeButtonClick = this.onMazeButtonClick.bind(this);
@@ -137,7 +138,8 @@ class App extends Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson.body)
+        console.log(responseJson.body.steps)
+        this.steps = responseJson.body.steps
         this.setState({ maze: responseJson.body.maze });
       }).catch(function (error) {
         console.log("error " + error);
@@ -159,6 +161,8 @@ class App extends Component {
     const { maze } = this.state;
     return (
       <div className="App">
+        <p>Steps</p>
+        <p>{this.steps}</p>
         <Maze value={maze}
           onChange={this.onMazeChange}
           onSubmit={this.onMazeSubmit}>
