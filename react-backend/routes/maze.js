@@ -34,7 +34,7 @@ router.post('/', function (req, res, next) {
   var readyArray = doThings(arrayMaze)
   var newStringArray = backToString(readyArray)
 
-  console.log(steps);
+  maze.steps = steps
   return res.json({
     body: ({
       maze: newStringArray,
@@ -56,10 +56,10 @@ function surroundSquares(current, arrayMaze) {
 
   var left = arrayMaze.filter(x => x.xcoord === current.xcoord - 1 && x.ycoord === current.ycoord)[0]
   var right = arrayMaze.filter(x => x.xcoord === current.xcoord + 1 && x.ycoord === current.ycoord)[0]
-  var top = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord + 1)[0]
-  var bottom = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord - 1)[0]
-
-  if (left.element != '#') {
+  var bottom = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord + 1)[0]
+  var top = arrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord - 1)[0]
+  
+  if (left != null &&left.element != '#') {
     if (left.value == null) {
       left.value = current.value + 1
       surroundSquares(left, arrayMaze)
@@ -70,7 +70,7 @@ function surroundSquares(current, arrayMaze) {
       return
     }
   }
-  if (right.element != '#') {
+  if (right != null && right.element != '#') {
     if (right.value == null) {
       right.value = current.value + 1
       surroundSquares(right, arrayMaze)
@@ -81,7 +81,7 @@ function surroundSquares(current, arrayMaze) {
       return
     }
   }
-  if (top.element != '#') {
+  if (top != null && top.element != '#') {
     if (top.value == null) {
       top.value = current.value + 1
       surroundSquares(top, arrayMaze)
@@ -92,7 +92,7 @@ function surroundSquares(current, arrayMaze) {
       return
     }
   }
-  if (bottom.element != '#') {
+  if (bottom != null &&bottom.element != '#') {
     if (bottom.value == null) {
       bottom.value = current.value + 1
       surroundSquares(bottom, arrayMaze)
@@ -103,13 +103,14 @@ function surroundSquares(current, arrayMaze) {
       return
     }
   }
+  
 }
 
 function traverseMaze(newArrayMaze, current) {
   var left = newArrayMaze.filter(x => x.xcoord === current.xcoord - 1 && x.ycoord === current.ycoord)[0]
   var right = newArrayMaze.filter(x => x.xcoord === current.xcoord + 1 && x.ycoord === current.ycoord)[0]
-  var top = newArrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord + 1)[0]
-  var bottom = newArrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord - 1)[0]
+  var bottom = newArrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord + 1)[0]
+  var top = newArrayMaze.filter(x => x.xcoord === current.xcoord && x.ycoord === current.ycoord - 1)[0]
 
   var list = []
 
